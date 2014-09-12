@@ -40,12 +40,13 @@
 <nav>
 <ul>
     <li><a title="Opcion 1" href="Index.php">Inicio</a></li>
-    <li><a title="Opcion 2" href="#">Resultado</a></li>
+    <li><a title="Opcion 2" href="#">Resultados</a></li>
     <li><a title="Opcion 3" href="#">Salir</a></li>  
 </ul>
 </nav>
 
 	<div>
+	<br><br><br>
 		<?php
 			if(!isset($_POST['encuesta'])){
 				echo '<div align="center">Visitante: '.$_SESSION['nombre'].'</div><br>';
@@ -75,7 +76,8 @@
 			}
 		?>
         
-        
+     <br><br><br>
+	 
 	</div>
 <footer>
 <center><img src="img/footer.jpg" /></center>
