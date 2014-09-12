@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Encuesta</title>
+<link rel="stylesheet" type"text/css" href="miestilo.css">
 <script>
 	function validacion(){
 		cntreg = document.getElementsByName('id').item(0).value;
@@ -39,6 +40,16 @@
 </script>
 </head>
 <body>
+<header><center><img src="img\Header.png"/></center>
+</header><center>
+<nav>
+<ul>
+    <li><a title="Opcion 1" href="Index.php">Inicio</a></li>
+    <li><a title="Opcion 2" href="#">Encuestar</a></li>
+    <li><a title="Opcion 3" href="#">Resultados</a></li>  
+</ul>
+</nav>
+
 <?php
 	if(isset($_POST['registrar'])){
 		$mysqli = conectar();
@@ -61,7 +72,10 @@
 
 	if(!isset($_POST['id'])){ // PAGINA INICIAL
 ?>
-<div align="center" style="border:dotted; width:400px"><br>
+<div align="center"><br>
+<h3>
+Formulario de Inicio de Sesion para las Encuestas
+</h3>
   <form name="login" method="post" action="" onSubmit="return validacion()">
     C.I o N&ordm; Reg:
     <input type="text" name="id">
