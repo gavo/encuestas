@@ -49,7 +49,7 @@
 	<br><br><br>
 		<?php
 			if(!isset($_POST['encuesta'])){
-				echo '<div align="center">Visitante: '.$_SESSION['nombre'].'</div><br>';
+				echo '<div align="center">Visitante: '.$_SESSION['nombre'].' - ID:'.$_SESSION['entry'].'</div><br>';
 				$consulta = "SELECT encuesta.`id_enc`,encuesta.`titulo`
 							FROM encuesta LEFT JOIN participa
 							ON encuesta.id_enc = participa.id_enc AND participa.entry = '".$_SESSION['entry']."'

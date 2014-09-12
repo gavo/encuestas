@@ -53,15 +53,18 @@
 <?php
 	if(isset($_POST['registrar'])){// AQUI SE REGISTRA A LOS NUEVOS VISITANTES
 		$mysqli = conectar();
-		$consulta = "INSERT INTO visitante(entry,nombre,estudia)(SELECT (SELECT MIN(entry)-1 entry FROM visitante),'".
-					strtoupper($_POST['newNombre'])."','".
-					strtoupper($_POST['newEstudia'])."');";
-		echo $consulta;
+		$consulta = "INSERT INTO visitante(entry,nombre,estudia)(SELECT (SELECT MIN(entry)-1 entry FROM visitante),'".strtoupper($_POST['newNombre'])."','".strtoupper($_POST['newEstudia'])."');";
 		$mysqli->query($consulta);
+		$consulta = "SELECT MIN(entry) entry FROM visitante WHERE nombre='".strtoupper($_POST['newNombre'])."' AND estudia='".strtoupper($_POST['newEstudia'])."';";
+		$resultado = $mysqli->query($consulta);
+		if($resultado){
+			while($fila = $resultado->fetch_assoc()){				
+				$_SESSION['entry']=$fila['entry'];
+				$_SESSION['nombre']=strtoupper($_POST['newNombre']);
+				$_SESSION['estudia']=strtoupper($_POST['newEstudia']);
+			}
+		}
 		$mysqli->close();
-		$_SESSION['entry']=strtoupper($_POST['newID']);
-		$_SESSION['nombre']=strtoupper($_POST['newNombre']);
-		$_SESSION['estudia']=strtoupper($_POST['newEstudia']);
 		if(isset($_SESSION['entry']) && isset($_SESSION['nombre']) && isset($_SESSION['estudia'])){
 			header('Location: encuesta.php');
 		}else{
@@ -100,6 +103,7 @@
 										echo "<option value='".utf8_encode($fila['estudia'])."'>".utf8_encode($fila['estudia'])."</option>";
 									}
 								}
+								$mysqli->close();
 							?>
 					</select>
 					<br>
