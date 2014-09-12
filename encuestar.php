@@ -1,10 +1,11 @@
-<?php
+﻿<?php
 	session_start();
 	include('common.php');
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?PHP header("Content-Type: text/html;charset=utf-8");?>
 <meta http-equiv="Refresh" content="5;url=index.php">
 <title>Encuestas Electronicas</title>
 <link rel="stylesheet" type"text/css" href="miestilo.css">

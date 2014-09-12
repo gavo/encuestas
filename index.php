@@ -104,7 +104,7 @@
 								$resultado = $mysqli->query($consulta);
 								if($resultado){
 									while($fila=$resultado->fetch_assoc()){
-										echo "<option value='".utf8_encode($fila['estudia'])."'>".utf8_encode($fila['estudia'])."</option>";
+										echo "<option value='".$fila['estudia']."'>".$fila['estudia']."</option>";
 									}
 								}
 								$mysqli->close();

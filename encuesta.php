@@ -6,6 +6,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Encuesta</title>
+<?PHP header("Content-Type: text/html;charset=utf-8");?>
 <link rel="stylesheet" type"text/css" href="miestilo.css">
 <?php if(isset($_POST['encuesta'])){
 	echo "<script>";

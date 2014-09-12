@@ -26,9 +26,9 @@
 			$resultado = $mysqli->query($consulta);
 			if($resultado){
 				while($fila = $resultado->fetch_assoc()){	
-					$this->pregunta = utf8_encode($fila['pregunta']);
+					$this->pregunta =$fila['pregunta'];
 					$this->id_res[] = $fila['id_res'];
-					$this->respuesta[] = utf8_encode($fila['respuesta']);
+					$this->respuesta[] = $fila['respuesta'];
 				}
 			}
 			$mysqli->close();
