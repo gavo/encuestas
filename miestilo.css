@@ -94,10 +94,3 @@ position: center;
 object{ 
 background-color:white; 
 } 
-footer { 
-position: both; 
-margin-top: 40px; /* altura en px del footer con valor negativo */ 
-height: 100px; /* Altura del Footer en px*/ 
-clear: both; 
-text-align: center; 
-color: #FFFFFF; 

@@ -144,10 +144,14 @@ Formulario de Inicio de Sesion para las Encuestas
     <br>
     <input type="submit" value="Registrar" name="registrar">
   </form>
+  	
 </div>
 <?php
     	}
 	}
 	?>
+<footer>
+<center><img src="img/footer.jpg" /></center>
+</footer>
 </body>
 </html>
