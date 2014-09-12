@@ -40,7 +40,7 @@
 </script>
 </head>
 <body>
-<header><center><img src="img\Header.png"/></center>
+<header><center><img src="img/Header.png"/></center>
 </header><center>
 <nav>
 <ul>
