@@ -18,6 +18,8 @@
     <li><a title="Opcion 3" href="#">Salir</a></li>  
 </ul>
 </nav>
+<div id="login">
+<br><br>
 <?php
 
 //include charts.php to access the InsertChart function
@@ -26,7 +28,7 @@ include "charts.php";
 echo InsertChart ( "charts.swf", "charts_library", "sample.php", 400, 250 );
 
 ?>
-
+</div>
 <footer>
 <center><img src="img/footer.jpg" /></center>
 </footer>
