@@ -56,7 +56,7 @@
 							WHERE participa.`id_enc` IS NULL AND estado = '1';";
 				$mysqli = conectar();
 				$resultado = $mysqli->query($consulta);
-				
+				$noRespuestas = true;
 				if($resultado){
 					while($fila = $resultado->fetch_assoc()){
 						echo '<div align="center"><form method="post" 
@@ -64,8 +64,16 @@
 						$_SESSION['encuesta']=$fila['id_enc'];
 						echo '<input type="hidden" value="'.$fila['id_enc'].'" name="encuesta">';
 						echo '<input type="submit" value="'.$fila['titulo'].'"></form>'."\n</div>";
-						
+						$noRespuestas =false;
 					}
+				}
+				if($noRespuestas){
+					?>
+                    <div id="divError">
+                        <label id="labelError">Error: Usted no tiene ninguna encuesta disponible para responder</label>
+                        <form><input type="button" value="volver atrás" onClick="history.back()" /></form>
+                    </div>	
+                    <?php	
 				}
 				$mysqli->close();
 			}else{

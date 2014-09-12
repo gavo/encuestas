@@ -127,7 +127,6 @@
 		session_destroy();
 		$mysqli = conectar();
 		$consulta = "SELECT * FROM visitante WHERE entry='".$_POST['id']."' AND NOMBRE LIKE '%".$pass."%';";
-		echo $consulta;
 		$resultado = $mysqli->query($consulta);
 		if($resultado){
 			session_start();
@@ -141,7 +140,14 @@
 		// si se optuvieron los datos de sesion, se redirecciona a la pagina de encuestas
 		if(isset($_SESSION['entry']) && isset($_SESSION['nombre']) && isset($_SESSION['estudia'])){
 			header('Location: encuesta.php');
-		}
+		}else{?>
+<div id="divError">
+	<label id="labelError">Error: Los Datos Proporcionados no fueron encontrados en la base de Datos</label>
+	<form><input type="button" value="volver atrás" onclick="history.back()" /></form>
+</div>		
+		
+<?php
+		}		
 	?>
   	
 <?php
