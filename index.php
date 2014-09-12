@@ -53,10 +53,10 @@
 <?php
 	if(isset($_POST['registrar'])){// AQUI SE REGISTRA A LOS NUEVOS VISITANTES
 		$mysqli = conectar();
-		$consulta = "INSERT INTO visitante(entry,nombre,estudia)VALUE('".
-					strtoupper($_POST['newID'])."','".
+		$consulta = "INSERT INTO visitante(entry,nombre,estudia)(SELECT (SELECT MIN(entry)-1 entry FROM visitante),'".
 					strtoupper($_POST['newNombre'])."','".
 					strtoupper($_POST['newEstudia'])."');";
+		echo $consulta;
 		$mysqli->query($consulta);
 		$mysqli->close();
 		$_SESSION['entry']=strtoupper($_POST['newID']);
@@ -113,23 +113,20 @@
 			<div id="login" align="center">
 			<br>
 			<h3>Seleccione la categoria de la encuesta</h3><br><br>
-				<a title="Visitantes" href="index.php?tipo=otro"><img src="img\otro.jpg" width='300' height='100' /></a>
-                <a title="Universitarios" href="index.php?tipo=univ"><img src="img\univ.jpg" width='300' height='100' /></a>
+				<a title="Visitantes" href="index.php?tipo=otro"><img src="img/otro.jpg" width='300' height='100' /></a>
+                <a title="Universitarios" href="index.php?tipo=univ"><img src="img/univ.jpg" width='300' height='100' /></a>
 			</div>
 <?php
 		}
 	}else{  // ENVIADO EL POST, SE PROCEDE A VERIFICAR SI EL USUARIO ESTÁ REGISTRADO EN LA BASE DE DATOS
-		if(!isset($_POST['pass'])){// Si no tiene contraseña, se crea el valor en blanco para hacer la consulta
-			$pass = "x";
-		}else{// caso contrario se asigna el valor pasado por post
-			$pass = sha1(strtoupper($_POST['pass']));
-		}
+		$pass = strtoupper($_POST['pass']);
 		session_destroy();
-		session_start();
 		$mysqli = conectar();
-		$consulta = "SELECT * FROM visitante WHERE entry='".$_POST['id']."' AND pass = '".$pass."';";
+		$consulta = "SELECT * FROM visitante WHERE entry='".$_POST['id']."' AND NOMBRE LIKE '%".$pass."%';";
+		echo $consulta;
 		$resultado = $mysqli->query($consulta);
 		if($resultado){
+			session_start();
 			while($fila=$resultado->fetch_assoc()){
 				$_SESSION['entry']=strtoupper($fila['entry']);
 				$_SESSION['nombre']=strtoupper(utf8_encode($fila['nombre']));
