@@ -82,14 +82,18 @@ background: white;
 width: 1025px;
 }
 
+
 div{
 font-family: Arial, Helvetica, sans-serif;
 color: black;
 font-weight:bold ;
 background: white;
 width: 1025px;
-height: 400px;
+height: 300px;
 position: center;
+}
+#login{
+margin-top:5px;
 }
 object{ 
 background-color:white; 

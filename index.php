@@ -45,8 +45,8 @@
 <nav>
 <ul>
     <li><a title="Opcion 1" href="Index.php">Inicio</a></li>
-    <li><a title="Opcion 2" href="#">Encuestar</a></li>
-    <li><a title="Opcion 3" href="#">Resultados</a></li>  
+    <li><a title="Opcion 2" href="#">Resultado</a></li>
+    <li><a title="Opcion 3" href="#">Salir</a></li>  
 </ul>
 </nav>
 
@@ -77,7 +77,7 @@
 				  <form name="login" method="post" action="" onSubmit="return validacion()">
 					Nro. Registro :<input type="text" name="id"><br>
 					<label onClick="alert('Su Contraseña es cualquiera de sus Nombres o Apellidos')"> 
-					&nbsp;&nbsp; Contraseña :</label><input type="password" name="pass" disabled><br>					
+					&nbsp;&nbsp; Contraseña :</label><input type="password" name="pass"><br>					
 					<input type="submit" value="Siguiente"><br>
 				  </form>
 				</div>
@@ -110,8 +110,11 @@
 			}
 		}else{
 ?>
-			<div title="login" align="center">
-				// aqui van los botones YEYO
+			<div id="login" align="center">
+			<br>
+			<h3>Seleccione la categoria de la encuesta</h3><br><br>
+				<a title="Visitantes" href="index.php?tipo=otro"><img src="img\otro.jpg" width='300' height='100' /></a>
+                <a title="Universitarios" href="index.php?tipo=univ"><img src="img\univ.jpg" width='300' height='100' /></a>
 			</div>
 <?php
 		}
