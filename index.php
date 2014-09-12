@@ -4,7 +4,8 @@
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?PHP header("Content-Type: text/html;charset=utf-8");?>
 <title>Encuesta</title>
 <link rel="stylesheet" type"text/css" href="miestilo.css">
 <script>
@@ -55,6 +56,8 @@
 		$mysqli = conectar();
 		$consulta = "INSERT INTO visitante(entry,nombre,estudia)(SELECT (SELECT MIN(entry)-1 entry FROM visitante),'".strtoupper($_POST['newNombre'])."','".strtoupper($_POST['newEstudia'])."');";
 		$mysqli->query($consulta);
+		
+		$cons = $consulta;
 		$consulta = "SELECT MIN(entry) entry FROM visitante WHERE nombre='".strtoupper($_POST['newNombre'])."' AND estudia='".strtoupper($_POST['newEstudia'])."';";
 		$resultado = $mysqli->query($consulta);
 		if($resultado){
@@ -68,6 +71,7 @@
 		if(isset($_SESSION['entry']) && isset($_SESSION['nombre']) && isset($_SESSION['estudia'])){
 			header('Location: encuesta.php');
 		}else{
+			echo $cons.'<br>';
 			die('Error al registrar los Datos');
 		}
 	}else{// SI NO SE VA REGISTRAR 
