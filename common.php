@@ -59,12 +59,13 @@
 		}
 		
 		function mostrarPreguntas(){
-			echo '<label>'.$this->pregunta.'</label><br>';	
+			echo '<div id="pregunta""><label>'.$this->pregunta.'</label><br>';	
 			$Salida = NULL;
 			for($i=0;$i<count($this->respuesta);$i++){
-				echo '<input type="radio" name="p'.	$this->id_pre.'" value="'.$this->id_res[$i].'">'.$this->respuesta[$i].'<br>'."\n";
+				echo '<input type="radio" name="p'.	$this->id_pre.'" value="'.$this->id_res[$i].'"><LABEL>'.$this->respuesta[$i].'</LABEL><br>'."\n";
 				$salida[]='p'.$this->id_pre;
 			}
+			echo '</div>';
 		}
 	}
 

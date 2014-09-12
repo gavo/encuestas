@@ -72,7 +72,7 @@
 		if(isset($_GET['tipo'])){
 			if($_GET['tipo']=='univ'){// SI ES UNIVERSITARIO
 ?>
-				<div align="center" title="login"><br>
+				<div id="login" align="center" title="login"><br>
 				<h3>Formulario de Inicio de Sesion para Universitarios</h3>
 				  <form name="login" method="post" action="" onSubmit="return validacion()">
 					Nro. Registro :<input type="text" name="id"><br>
@@ -86,7 +86,7 @@
 			}else{  // SI NO ES UNIVERSITARIO
 ?>
 
-				<div align="center" title="login"><br>
+				<div id="login" align="center" title="login"><br>
 				<h3>Formulario de Inicio de Sesion para Visitantes</h3>
 					<form name="registro" action="index.php" method="post">
 					<br>Nombre:<input name="newNombre" type="text"><br>

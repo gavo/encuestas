@@ -89,12 +89,19 @@ color: black;
 font-weight:bold ;
 background: white;
 width: 1025px;
-height: 300px;
 position: center;
 }
 #login{
 margin-top:5px;
+height: 300px;
+width: 1025px;
 }
+#pregunta{
+width: 300px;
+Text-align: left;
+
+}
+
 object{ 
 background-color:white; 
 } 
