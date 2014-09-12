@@ -51,7 +51,7 @@
 </nav>
 
 <?php
-	if(isset($_POST['registrar'])){
+	if(isset($_POST['registrar'])){// AQUI SE REGISTRA A LOS NUEVOS VISITANTES
 		$mysqli = conectar();
 		$consulta = "INSERT INTO visitante(entry,nombre,estudia)VALUE('".
 					strtoupper($_POST['newID'])."','".
@@ -67,33 +67,50 @@
 		}else{
 			die('Error al registrar los Datos');
 		}
-	}else{
-
-
-	if(!isset($_POST['id'])){ // PAGINA INICIAL
+	}else{// SI NO SE VA REGISTRAR 
+	if(!isset($_POST['id'])){ // SI NO SE HA ENVIAADO UN ID PARA VERIFICAR
+		if(isset($_GET['tipo'])){
+			if($_GET['tipo']=='univ'){// SI ES UNIVERSITARIO
 ?>
-<div align="center"><br>
-<h3>
-Formulario de Inicio de Sesion para las Encuestas
-</h3>
-  <form name="login" method="post" action="" onSubmit="return validacion()">
-    C.I o N&ordm; Reg:
-    <input type="text" name="id">
-    <input type="submit" value="Siguiente">
-    <br>
-    <label 
-            onClick="alert('Convinacion de las dos primeras letras de sus apellidos y nombres (perez ortiz juan pablo=peorjupa)')"> &nbsp;&nbsp;&nbsp;&nbsp;Contraseñas:</label>
-    <input type="password" name="pass" disabled>
-    <label >(Universitario)</label>
-    <br>
-    <input type="radio" name="rad" value="univ" onClick="login.pass.disabled=false">
-    Universitario
-    <input type="radio" name="rad" value="otro" checked onClick="login.pass.disabled=true">
-    Visitante
-  </form>
-</div>
-<br>
+				<div align="center"><br>
+				<h3>Formulario de Inicio de Sesion para Universitarios</h3>
+				  <form name="login" method="post" action="" onSubmit="return validacion()">
+					Nro. Registro :<input type="text" name="id"><br>
+					<label onClick="alert('Su Contraseña es cualquiera de sus Nombres o Apellidos')"> 
+					&nbsp;&nbsp; Contraseña :</label><input type="password" name="pass" disabled><br>					
+					<input type="submit" value="Siguiente"><br>
+				  </form>
+				</div>
+				<br>
+<?php	
+			}else{  // SI NO ES UNIVERSITARIO
+?>
+
+				<div align="center"><br>
+				<h3>Formulario de Inicio de Sesion para Visitantes</h3>
+					<form name="registro" action="index.php" method="post">
+					<br>Nombre:<input name="newNombre" type="text"><br>
+					Colegio:<select name="newEstudia">
+					  <?php
+								$mysqli=conectar();
+								$consulta="SELECT estudia FROM estudia WHERE flag<1 ORDER BY estudia";
+								$resultado = $mysqli->query($consulta);
+								if($resultado){
+									while($fila=$resultado->fetch_assoc()){
+										echo "<option value='".utf8_encode($fila['estudia'])."'>".utf8_encode($fila['estudia'])."</option>";
+									}
+								}
+							?>
+					</select>
+					<br>
+					<input type="submit" value="Registrar" name="registrar">
+				  </form>
+				</div>
 <?php
+			}
+		}else{
+			// esta seria la pagina inicial
+		}
 	}else{  // ENVIADO EL POST, SE PROCEDE A VERIFICAR SI EL USUARIO ESTÁ REGISTRADO EN LA BASE DE DATOS
 		if(!isset($_POST['pass'])){// Si no tiene contraseña, se crea el valor en blanco para hacer la consulta
 			$pass = "x";
@@ -118,33 +135,6 @@ Formulario de Inicio de Sesion para las Encuestas
 			header('Location: encuesta.php');
 		}
 	?>
-<div align="center" style="border:dotted; width:400px"><br>
-  <form name="registro" action="index.php" method="post">
-    C.I.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="newID" type="text" value="<?php echo $_POST['id'];?>" 
-            		onFocus="if(this.value=='<?php echo $_POST['id'];?>')this.value='';" 
-                    onBlur="if(this.value=='')this.value='<?php echo $_POST['id'];?>'">
-    <br>
-    Nombre:
-    <input name="newNombre" type="text">
-    <br>
-    Estudia en:
-    <select name="newEstudia">
-      <?php
-            	$mysqli=conectar();
-				$consulta="SELECT estudia FROM estudia WHERE flag<1 ORDER BY estudia";
-				$resultado = $mysqli->query($consulta);
-				if($resultado){
-					while($fila=$resultado->fetch_assoc()){
-						echo "<option value='".utf8_encode($fila['estudia'])."'>".utf8_encode($fila['estudia'])."</option>";
-					}
-				}
-			?>
-    </select>
-    <br>
-    <input type="submit" value="Registrar" name="registrar">
-  </form>
-</div>
 <?php
     	}
 	}
