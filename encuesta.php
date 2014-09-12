@@ -10,7 +10,7 @@
 <?php if(isset($_POST['encuesta'])){
 	echo "<script>";
 	$mysqli = conectar();
-	$consulta = "SELECT id_pre FROM pregunta WHERE id_enc = ".$_SESSION['encuesta'];
+	$consulta = "SELECT id_pre FROM pregunta WHERE id_enc = ".$_POST['encuesta'];
 	$resultado = $mysqli->query($consulta);
 	$preguntas = NULL;
 	if($resultado){
