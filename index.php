@@ -72,7 +72,7 @@
 		if(isset($_GET['tipo'])){
 			if($_GET['tipo']=='univ'){// SI ES UNIVERSITARIO
 ?>
-				<div align="center"><br>
+				<div align="center" title="login"><br>
 				<h3>Formulario de Inicio de Sesion para Universitarios</h3>
 				  <form name="login" method="post" action="" onSubmit="return validacion()">
 					Nro. Registro :<input type="text" name="id"><br>
@@ -86,7 +86,7 @@
 			}else{  // SI NO ES UNIVERSITARIO
 ?>
 
-				<div align="center"><br>
+				<div align="center" title="login"><br>
 				<h3>Formulario de Inicio de Sesion para Visitantes</h3>
 					<form name="registro" action="index.php" method="post">
 					<br>Nombre:<input name="newNombre" type="text"><br>
@@ -109,7 +109,11 @@
 <?php
 			}
 		}else{
-			// esta seria la pagina inicial
+?>
+			<div title="login" align="center">
+				// aqui van los botones YEYO
+			</div>
+<?php
 		}
 	}else{  // ENVIADO EL POST, SE PROCEDE A VERIFICAR SI EL USUARIO ESTÁ REGISTRADO EN LA BASE DE DATOS
 		if(!isset($_POST['pass'])){// Si no tiene contraseña, se crea el valor en blanco para hacer la consulta
