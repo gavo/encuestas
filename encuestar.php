@@ -6,9 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <meta http-equiv="Refresh" content="5;url=index.php">
-<title>Encuesta</title>
+<title>Encuestas Electronicas</title>
+<link rel="stylesheet" type"text/css" href="miestilo.css">
 </head>
 <body>
+<header><center><img src="img/Header.png"/></center>
+</header><center>
+<nav>
+<ul>
+    <li><a title="Opcion 1" href="Index.php">Inicio</a></li>
+    <li><a title="Opcion 2" href="Resultado.php">Resultado</a></li>
+    <li><a title="Opcion 3" href="#">Salir</a></li>  
+</ul>
+</nav>
+
 <?php
 	if(!isset($_POST['encuesta'])){
 		die("Usted no esta autorizado para votar");
@@ -64,13 +75,20 @@
 		$consulta = "INSERT INTO participa(id_enc,entry)VALUES('".$enc."','".$vot."');";
 		$mysqli->query($consulta);
 		$mysqli->close();
-		session_destroy();
-		echo "Su Votacion esta siendo procesada...<br>
-		gracias por su participacion";
+		session_destroy();?>
+	<div id="divError">
+	<br><br><br>
+	<label id="labelError">Su encuesta esta siendo procesada...<br> Gracias por participar ...<br> sera redireccionado... al Inicio...</label>
+	</div>	
+	   	
+		<?php 
 	}else{
 		die('ERROR: Usted ya participo de esta encuesta en esta fecha:"'.$fecha.'"');
 	}
 ?>
+<footer>
+<center><img src="img/footer.jpg" /></center>
+</footer>
 </body>
 </html>
 

@@ -101,6 +101,24 @@ width: 300px;
 Text-align: left;
 
 }
+#divError{
+font-family: Arial, Helvetica, sans-serif;
+color: black;
+font-weight:bold ;
+background: white;
+width: 1025px;
+position: center;
+height: 300px;
+}
+#labelError{
+font-family: Arial, Helvetica, sans-serif;
+color: black;
+font-weight:bold ;
+background: white;
+width: fixed;
+position: center;
+height: 300px;
+}
 
 object{ 
 background-color:white; 
