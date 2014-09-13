@@ -130,7 +130,7 @@
 		$pass = strtoupper($_POST['pass']);
 		session_destroy();
 		$mysqli = conectar();
-		$consulta = "SELECT * FROM visitante WHERE entry='".$_POST['id']."' AND NOMBRE LIKE '%".$pass."%';";
+		$consulta = "SELECT * FROM visitante WHERE entry='".$_POST['id']."' AND (NOMBRE LIKE '%".$pass." %' or NOMBRE LIKE '% ".$pass."%');";
 		$resultado = $mysqli->query($consulta);
 		if($resultado){
 			session_start();
@@ -147,7 +147,7 @@
 		}else{?>
 <div id="divError">
 	<label id="labelError">Error: Los Datos Proporcionados no fueron encontrados en la base de Datos</label>
-	<form><input type="button" value="volver atrás" onclick="history.back()" /></form>
+	<form><input type="button" value="volver atrás" onClick="history.back()" /></form>
 </div>		
 		
 <?php

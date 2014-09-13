@@ -25,7 +25,10 @@
 //include charts.php to access the InsertChart function
 include "charts.php";
 
-echo InsertChart ( "charts.swf", "charts_library", "sample.php", 400, 250 );
+echo InsertChart ( "charts.swf", "charts_library", "sample.php", 700, 100 );
+
+echo InsertChart ( "charts.swf", "charts_library", "sample.php", 700, 100 );
+
 
 ?>
 </div>
