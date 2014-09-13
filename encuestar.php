@@ -45,13 +45,13 @@
 	$enc = $_POST['encuesta'];
 	$vot = $_SESSION['entry'];
 	$mysqli = conectar();
-	$consulta = "SELECT MAX(num)+1 num FROM guarda";
+	$consulta = "SELECT MAX(entry)+1 entry FROM guarda";
 	$respuesta = $mysqli->query($consulta);
 	$num = 1;
 	if($respuesta){
 		while($fila = $respuesta->fetch_assoc()){
-			if($fila['num']!= NULL)
-				$num = $fila['num'];
+			if($fila['entry']!= NULL)
+				$num = $fila['entry'];
 		}
 	}
 	$mysqli->close();
@@ -70,8 +70,8 @@
 	if(!$flag){
 		for($i = 0;$i< count($verificacion);$i++){
 			$r = $_POST['p'.$verificacion[$i]];	
-			$consulta = "INSERT INTO guarda(entry,id_pre,id_res)VALUES('".$num."','".$verificacion[$i]."','".$r."');";
-			$mysqli->query($consulta);
+			$consulta = "INSERT INTO guarda(entry,id_pre,id_res)VALUES('".$_SESSION['entry']."','".$verificacion[$i]."','".$r."');";
+			$mysqli->query($consulta);s
 		}
 		$consulta = "INSERT INTO participa(id_enc,entry)VALUES('".$enc."','".$vot."');";
 		$mysqli->query($consulta);
