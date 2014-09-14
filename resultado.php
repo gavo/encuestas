@@ -18,18 +18,33 @@
     <li><a title="Opcion 3" href="#">Salir</a></li>  
 </ul>
 </nav>
-<div id="login">
+<div >
 <br><br>
 <?php
-
-//include charts.php to access the InsertChart function
-include "charts.php";
-
-echo InsertChart ( "charts.swf", "charts_library", "sample.php", 700, 100 );
-
-echo InsertChart ( "charts.swf", "charts_library", "sample.php", 700, 100 );
-
-
+if(isset($_POST['encuesta'])){
+	$consulta = "SELECT id_pre FROM pregunta WHERE id_enc = '".$_POST['encuesta']."';";
+	include "charts.php";
+	$mysqli = conectar();
+	$resultado = $mysqli->query($consulta);
+	if($resultado){
+		while($fila=$resultado->fetch_assoc()){
+			echo InsertChart ( "charts.swf", "charts_library", "generadorReportes.php?id=".$fila['id_pre'], 500, 300 );
+		}
+	}
+	$mysqli->close();
+}else{
+	$consulta = "SELECT * FROM encuesta";
+	$mysqli = conectar();
+	$resultado = $mysqli->query($consulta);
+	if($resultado){
+		while($fila=$resultado->fetch_assoc()){
+			echo '<form method="POST" action="resultado.php">';			
+			echo '<input type="hidden" name=encuesta value="'.$fila['id_enc'].'">'.
+				  '<input type="submit" value="'.$fila['titulo'].'"></form>';
+		}
+	}
+	$mysqli->close();
+}
 ?>
 </div>
 <footer>
