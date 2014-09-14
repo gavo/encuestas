@@ -14,8 +14,8 @@
 <nav>
 <ul>
     <li><a title="Opcion 1" href="Index.php">Inicio</a></li>
-    <li><a title="Opcion 2" href="#">Resultado</a></li>
-    <li><a title="Opcion 3" href="#">Salir</a></li>  
+    <li><a title="Opcion 2" href="resultado.php">Resultado</a></li>
+    <li><a title="Opcion 3" href="index.php">Salir</a></li>  
 </ul>
 </nav>
 <div >
@@ -45,7 +45,7 @@ if(isset($_POST['encuesta'])){
 	}
 	$mysqli->close();
 }
-?>
+?><br>
 </div>
 <footer>
 <center><img src="img/footer.jpg" /></center>

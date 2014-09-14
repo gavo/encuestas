@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?PHP header("Content-Type: text/html;charset=utf-8");?>
-<meta http-equiv="Refresh" content="5;url=index.php">
+<meta http-equiv="Refresh" content="5;url=encuesta.php">
 <title>Encuestas Electronicas</title>
 <link rel="stylesheet" type"text/css" href="miestilo.css">
 </head>
@@ -17,7 +17,7 @@
 <ul>
     <li><a title="Opcion 1" href="Index.php">Inicio</a></li>
     <li><a title="Opcion 2" href="Resultado.php">Resultado</a></li>
-    <li><a title="Opcion 3" href="#">Salir</a></li>  
+    <li><a title="Opcion 3" href="index.php">Salir</a></li>  
 </ul>
 </nav>
 
@@ -75,11 +75,10 @@
 		}
 		$consulta = "INSERT INTO participa(id_enc,entry)VALUES('".$enc."','".$vot."');";
 		$mysqli->query($consulta);
-		$mysqli->close();
-		session_destroy();?>
+		$mysqli->close();?>
 	<div id="divError">
 	<br><br><br>
-	<label id="labelError">Su encuesta esta siendo procesada...<br> Gracias por participar ...<br> sera redireccionado... al Inicio...</label>
+	<label id="labelError">Su encuesta esta siendo procesada...<br> Gracias por participar ...<br> sera redireccionado... la pagina de selección de encuestas...<br> por si desea participar de otra encuesta</label>
 	</div>	
 	   	
 		<?php 

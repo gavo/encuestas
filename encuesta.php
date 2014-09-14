@@ -41,8 +41,8 @@
 <nav>
 <ul>
     <li><a title="Opcion 1" href="Index.php">Inicio</a></li>
-    <li><a title="Opcion 2" href="#">Resultados</a></li>
-    <li><a title="Opcion 3" href="#">Salir</a></li>  
+    <li><a title="Opcion 2" href="resultados.pgp">Resultados</a></li>
+    <li><a title="Opcion 3" href="index.php">Salir</a></li>  
 </ul>
 </nav>
 
@@ -72,7 +72,6 @@
 					?>
                     <div id="divError">
                         <label id="labelError">Error: Usted no tiene ninguna encuesta disponible para responder</label>
-                        <form><input type="button" value="volver atrás" onClick="history.back()" /></form>
                     </div>	
                     <?php	
 				}
