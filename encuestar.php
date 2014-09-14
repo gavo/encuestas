@@ -11,17 +11,8 @@
 <link rel="stylesheet" type"text/css" href="miestilo.css">
 </head>
 <body>
-<header><center><img src="img/Header.png"/></center>
-</header><center>
-<nav>
-<ul>
-    <li><a title="Opcion 1" href="Index.php">Inicio</a></li>
-    <li><a title="Opcion 2" href="Resultado.php">Resultado</a></li>
-    <li><a title="Opcion 3" href="index.php">Salir</a></li>  
-</ul>
-</nav>
-
 <?php
+	include('includes/header.php');
 	if(!isset($_POST['encuesta'])){
 		die("Usted no esta autorizado para votar");
 	}
@@ -85,10 +76,6 @@
 	}else{
 		die('ERROR: Usted ya participo de esta encuesta en esta fecha:"'.$fecha.'"');
 	}
+	include('includes/footer.php');
 ?>
-<footer>
-<center><img src="img/footer.jpg" /></center>
-</footer>
-</body>
-</html>
 

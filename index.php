@@ -41,17 +41,8 @@
 </script>
 </head>
 <body>
-<header><center><img src="img/Header.png"/></center>
-</header><center>
-<nav>
-<ul>
-    <li><a title="Opcion 1" href="Index.php">Inicio</a></li>
-    <li><a title="Opcion 2" href="Resultado.php">Resultado</a></li>
-    <li><a title="Opcion 3" href="#">Salir</a></li>  
-</ul>
-</nav>
-
 <?php
+	include("includes/header.php");
 	if(isset($_POST['registrar'])){// AQUI SE REGISTRA A LOS NUEVOS VISITANTES
 		$mysqli = conectar();
 		$consulta = "INSERT INTO visitante(entry,nombre,estudia)(SELECT (SELECT MIN(entry)-1 entry FROM visitante),'".strtoupper($_POST['newNombre'])."','".strtoupper($_POST['newEstudia'])."');";
@@ -151,15 +142,8 @@
 </div>		
 		
 <?php
-		}		
-	?>
-  	
-<?php
+		}
     	}
 	}
-	?>
-<footer>
-<center><img src="img/footer.jpg" /></center>
-</footer>
-</body>
-</html>
+	include("includes/footer.php");
+?>

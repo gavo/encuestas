@@ -9,15 +9,9 @@
 <link rel="stylesheet" type"text/css" href="miestilo.css">
 </head>
 <body>
-<header><center><img src="img/Header.png"/></center>
-</header><center>
-<nav>
-<ul>
-    <li><a title="Opcion 1" href="Index.php">Inicio</a></li>
-    <li><a title="Opcion 2" href="resultado.php">Resultado</a></li>
-    <li><a title="Opcion 3" href="index.php">Salir</a></li>  
-</ul>
-</nav>
+<?php 
+	include('includes/header.php');
+?>
 <div >
 <br><br>
 <?php
@@ -47,8 +41,6 @@ if(isset($_POST['encuesta'])){
 }
 ?><br>
 </div>
-<footer>
-<center><img src="img/footer.jpg" /></center>
-</footer>
-</body>
-</html>
+<?php
+	include('includes/footer.php');
+?>

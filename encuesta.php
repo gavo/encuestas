@@ -36,58 +36,58 @@
 	}?>
 </head>
 <body>
-<header><center><img src="img/Header.png"/></center>
-</header><center>
-<nav>
-<ul>
-    <li><a title="Opcion 1" href="Index.php">Inicio</a></li>
-    <li><a title="Opcion 2" href="resultados.pgp">Resultados</a></li>
-    <li><a title="Opcion 3" href="index.php">Salir</a></li>  
-</ul>
-</nav>
+<?php
+	include("includes/header.php");
+?>
 
 	<div>
 	<br><br><br>
 		<?php
-			if(!isset($_POST['encuesta'])){
-				echo '<div align="center">Visitante: '.$_SESSION['nombre'].'</div><br>';
-				$consulta = "SELECT encuesta.`id_enc`,encuesta.`titulo`
-							FROM encuesta LEFT JOIN participa
-							ON encuesta.id_enc = participa.id_enc AND participa.entry = '".$_SESSION['entry']."'
-							WHERE participa.`id_enc` IS NULL AND estado = '1';";
-				$mysqli = conectar();
-				$resultado = $mysqli->query($consulta);
-				$noRespuestas = true;
-				if($resultado){
-					while($fila = $resultado->fetch_assoc()){
-						echo '<div align="center"><form method="post" 
-							  action="encuesta.php">'."\n";
-						$_SESSION['encuesta']=$fila['id_enc'];
-						echo '<input type="hidden" value="'.$fila['id_enc'].'" name="encuesta">';
-						echo '<input type="submit" value="'.$fila['titulo'].'"></form>'."\n</div>";
-						$noRespuestas =false;
+			if(isset($_SESSION['nombre'])){
+				if(!isset($_POST['encuesta'])){
+					echo '<div align="center">Visitante: '.$_SESSION['nombre'].'</div><br>';
+					$consulta = "SELECT encuesta.`id_enc`,encuesta.`titulo`
+								FROM encuesta LEFT JOIN participa
+								ON encuesta.id_enc = participa.id_enc AND participa.entry = '".$_SESSION['entry']."'
+								WHERE participa.`id_enc` IS NULL AND estado = '1';";
+					$mysqli = conectar();
+					$resultado = $mysqli->query($consulta);
+					$noRespuestas = true;
+					if($resultado){
+						while($fila = $resultado->fetch_assoc()){
+							echo '<div align="center"><form method="post" 
+								  action="encuesta.php">'."\n";
+							$_SESSION['encuesta']=$fila['id_enc'];
+							echo '<input type="hidden" value="'.$fila['id_enc'].'" name="encuesta">';
+							echo '<input type="submit" value="'.$fila['titulo'].'"></form>'."\n</div>";
+							$noRespuestas =false;
+						}
 					}
+					if($noRespuestas){
+						?>
+						<div id="divError">
+							<label id="labelError">Error: Usted no tiene ninguna encuesta disponible para responder</label>
+						</div>	
+						<?php	
+						session_destroy();
+					}
+					$mysqli->close();
+				}else{
+					$preguntas = new pregunta();
+					$preguntas->listar($_POST['encuesta']);
 				}
-				if($noRespuestas){
-					?>
-                    <div id="divError">
-                        <label id="labelError">Error: Usted no tiene ninguna encuesta disponible para responder</label>
-                    </div>	
-                    <?php	
-				}
-				$mysqli->close();
 			}else{
-				$preguntas = new pregunta();
-				$preguntas->listar($_POST['encuesta']);
-				
-				
+				?>
+					<div id="divError">
+						<label id="labelError">Error: Debe identificarse para poder ver las Encuestas Disponibles</label>
+					</div>	
+				<?php
 			}
 		?>
         
      <br><br><br>
 	 
 	</div>
-<footer>
-<center><img src="img/footer.jpg" /></center>
-</footer>
-</body>
+<?php
+	include("includes/footer.php");
+?>
