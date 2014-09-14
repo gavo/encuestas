@@ -71,7 +71,7 @@
 		for($i = 0;$i< count($verificacion);$i++){
 			$r = $_POST['p'.$verificacion[$i]];	
 			$consulta = "INSERT INTO guarda(entry,id_pre,id_res)VALUES('".$_SESSION['entry']."','".$verificacion[$i]."','".$r."');";
-			$mysqli->query($consulta);s
+			$mysqli->query($consulta);
 		}
 		$consulta = "INSERT INTO participa(id_enc,entry)VALUES('".$enc."','".$vot."');";
 		$mysqli->query($consulta);
