@@ -16,8 +16,12 @@
 <br><br>
 <?php
 if(isset($_POST['encuesta'])){
-	$consulta = "SELECT id_pre FROM pregunta WHERE id_enc = '".$_POST['encuesta']."';";
 	include "charts.php";
+	echo InsertChart( "charts.swf", "charts_library", "generadorReportes.php?tipo=0&enc=".$_POST['encuesta'], 500, 300 );
+	echo InsertChart( "charts.swf", "charts_library", "generadorReportes.php?tipo=1&enc=".$_POST['encuesta'], 500, 300 );
+	echo InsertChart( "charts.swf", "charts_library", "generadorReportes.php?tipo=2&enc=".$_POST['encuesta'], 1000, 500 );
+	$consulta = "SELECT id_pre FROM pregunta WHERE id_enc = '".$_POST['encuesta']."';";
+
 	$mysqli = conectar();
 	$resultado = $mysqli->query($consulta);
 	if($resultado){

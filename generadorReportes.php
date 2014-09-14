@@ -26,6 +26,52 @@
 		}
 		$mysqli->close();
 		$chart['chart_data'] = $salida;
+		SendChartData($chart);	
+	}
+	if(isset($_GET['enc']) && isset($_GET['tipo'])){
+		if($_GET['tipo']==0){
+			$titulo = array('','Visitantes por Colegio');
+		}
+		if($_GET['tipo']==1){
+			$titulo = array('','Visitantes por Carrera');
+		}
+		$mysqli = conectar();
+		if($_GET['tipo']==2){
+			$titulo = array('','Visitantes Totales');
+			$sql = "SELECT estudia.`flag`, COUNT(participa.entry) n
+					FROM participa INNER JOIN visitante INNER JOIN estudia
+					ON participa.`entry` = visitante.`entry` AND estudia.`estudia` = visitante.`estudia`
+					WHERE participa.`id_enc` = '".$_GET['enc']."' AND estudia.`flag`< 3
+					GROUP BY estudia.`flag`";
+			$salida[]= $titulo;
+			$resultado = $mysqli->query($sql);
+			if($resultado){
+				while($fila = $resultado->fetch_assoc()){
+					if($fila['flag']==0){
+						$salida[]= array('Universitario',$fila['n']);
+					}else{
+						$salida[]= array('Visitante',$fila['n']);
+					}
+				}
+			}
+		}else{
+			$sql = "SELECT visitante.`estudia`, COUNT(participa.entry) n
+					FROM participa INNER JOIN visitante INNER JOIN estudia
+					ON participa.`entry` = visitante.`entry` AND estudia.`estudia` = visitante.`estudia`
+					WHERE participa.`id_enc` = ".$_GET['enc']." AND estudia.`flag`= ".$_GET['tipo']."
+					GROUP BY visitante.`estudia`";
+			$salida[]= $titulo;
+			$resultado = $mysqli->query($sql);
+			if($resultado){
+				while($fila = $resultado->fetch_assoc()){
+					$salida[]= array($fila['estudia'],$fila['n']);
+				}
+			}
+		}
+		$mysqli->close();
+		$chart['chart_data'] = $salida;
 		SendChartData($chart);
 	}
+	
+	
 ?>
