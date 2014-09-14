@@ -47,7 +47,7 @@
 			$resultado = $mysqli->query($sql);
 			if($resultado){
 				while($fila = $resultado->fetch_assoc()){
-					if($fila['flag']==0){
+					if($fila['flag']==1){
 						$salida[]= array('Universitario',$fila['n']);
 					}else{
 						$salida[]= array('Visitante',$fila['n']);
