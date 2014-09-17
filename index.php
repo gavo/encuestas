@@ -76,7 +76,7 @@
 					Nro. Registro :<input type="text" name="id"><br>
 					<label onClick="alert('Su Contraseña es cualquiera de sus Nombres o Apellidos')"> 
 					&nbsp;&nbsp; Contraseña :</label><input type="password" name="pass"><br>					
-					<input type="submit" value="Siguiente"><br>
+					<input id="button" type="submit" value="Siguiente"><br>
 				  </form>
 				</div>
 				<br>
@@ -102,7 +102,7 @@
 							?>
 					</select>
 					<br>
-					<input type="submit" value="Registrar" name="registrar">
+					<input id="button" type="submit" value="Registrar" name="registrar">
 				  </form>
 				</div>
 <?php
@@ -138,7 +138,7 @@
 		}else{?>
 <div id="divError">
 	<label id="labelError">Error: Los Datos Proporcionados no fueron encontrados en la base de Datos</label>
-	<form><input type="button" value="volver atrás" onClick="history.back()" /></form>
+	<form><input id="button" type="button" value="volver atrás" onClick="history.back()" /></form>
 </div>		
 		
 <?php

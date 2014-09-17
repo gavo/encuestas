@@ -47,14 +47,14 @@
 			$mysqli->close();
 			$preguntas = NULL;
 			echo '<form method="POST" action="encuestar.php" onsubmit="return validar()">'."\n";
-			echo '<input type="hidden" name=encuesta value="'.$id_enc.'">';
+			echo '<input id="button" type="hidden" name=encuesta value="'.$id_enc.'">';
 			for($i=0;$i<count($r);$i++){
 				$P = new pregunta();
 				$P->instanciar($r[$i],$id_enc);
 				$preguntas[] = $P;	
 				$P->mostrarPreguntas();
 			}
-			echo '<input type="submit" name="votar" value="Votar"></form>'."\n";
+			echo '<input id="button" type="submit" name="votar" value="Votar"></form>'."\n";
 			return $preguntas;				
 		}
 		

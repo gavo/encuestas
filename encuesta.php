@@ -59,7 +59,7 @@
 								  action="encuesta.php">'."\n";
 							$_SESSION['encuesta']=$fila['id_enc'];
 							echo '<input type="hidden" value="'.$fila['id_enc'].'" name="encuesta">';
-							echo '<input type="submit" value="'.$fila['titulo'].'"></form>'."\n</div>";
+							echo '<input id="button" type="submit" value="'.$fila['titulo'].'"></form>'."\n</div>";
 							$noRespuestas =false;
 						}
 					}

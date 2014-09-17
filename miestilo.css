@@ -123,3 +123,17 @@ height: 300px;
 object{ 
 background-color:white; 
 } 
+#button{
+    display:block;
+    border: 1px solid #395d9b;
+    border-radius: 5px;
+    text-align:center;
+    background:#2b7ab4;
+    line-height:40px;
+	color:white;
+    font-size:14px;
+	font-weight:bold;
+	text-transform:uppercase;
+}
+#button:hover{
+background:#000F74;}
